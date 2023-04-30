@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 
 import Sort from './Sort';
 import Tree from './Tree';
@@ -15,21 +15,19 @@ const App = () => {
                             <Link to="/sort">Sort</Link>
                         </li>
                         <li>
-                            <Link to="/tree">Tree</Link>
+                            <Link to="/">Tree</Link>
                         </li>
                     </ul>
                 </nav>
-                <Switch>
-                    <Route path="/sort">
-                        <Sort />
-                    </Route>
-                    <Route>
-                        <Tree />
-                    </Route>
-                </Switch>
+                <Routes>
+                    <Route path="/sort" element={<Sort />} />
+                    <Route path="/" element={<Tree />} />
+                </Routes>
             </div>
         </Router>
     );
 };
 
-render(<App />, document.getElementById('app'));
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<App />);
