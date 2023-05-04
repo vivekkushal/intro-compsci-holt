@@ -17,6 +17,7 @@ function sort(nums) {
       nums[i] = nums[i + 1];
       nums[i + 1] = temp;
       i--;
+      snapshot(nums);
     }
   }
   snapshot(nums);
