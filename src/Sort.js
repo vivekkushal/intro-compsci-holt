@@ -10,21 +10,15 @@ function sort(nums) {
   // call snapshot any time you do anything to the array
   // it's okay if you call it with duplicate value array,
   // it will deduplicate for you
-  let swap = false;
-  let iterations = 1;
-  do {
-    swap = false;
-    for (let i = 0; i < nums.length - iterations; i++) {
-      snapshot(nums);
-      if (nums[i] > nums[i + 1]) {
-        let temp = nums[i];
-        nums[i] = nums[i + 1];
-        nums[i + 1] = temp;
-        swap = true;
-      }
+  for (let i = 1; i < nums.length; i++) {
+    snapshot(nums);
+    while (i >= 0 && nums[i] > nums[i + 1]) {
+      let temp = nums[i];
+      nums[i] = nums[i + 1];
+      nums[i + 1] = temp;
+      i--;
     }
-    iterations++;
-  } while (swap);
+  }
   snapshot(nums);
 }
 
